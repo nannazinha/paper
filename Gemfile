@@ -15,6 +15,7 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 gem 'rails_admin', '~> 2.0'
+gem 'rails_admin_rollincode', :git => 'git@github.com:nannazinha/rollincode_custom.git'
 gem 'devise'
 
 group :development do
