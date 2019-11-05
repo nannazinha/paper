@@ -15,10 +15,22 @@ RailsAdmin.config do |config|
     navigation_icon 'fas fa-users'
 
     create do
-      field  :email
       field  :name
-      field  :cpf
+      field  :email
+      field  :phone_number
+      field  :gender
       field  :birth_date
+      field  :cpf
+      field  :street
+      field  :number
+      field  :complement
+      field  :district
+      field  :city
+      field  :state 
+      field  :zip_code
+      field  :sponsor
+      field  :sponsor_cpf
+
       # field  :product_quantities
       # field  :email
       # field  :name
