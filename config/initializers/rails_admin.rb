@@ -13,6 +13,25 @@ RailsAdmin.config do |config|
 
   config.model User do
     navigation_icon 'fas fa-users'
+
+    create do
+      field  :email
+      field  :name
+      field  :cpf
+      field  :birth_date
+      # field  :product_quantities
+      # field  :email
+      # field  :name
+      # field  :cpf
+      # field  :birth_date
+      # field  :product_quantities
+
+      # field :admin_id, :hidden do
+      #   default_value do
+      #     bindings[:view]._current_admin
+      #   end
+      # end
+    end
   end
 
   config.model Contract do
@@ -22,6 +41,12 @@ RailsAdmin.config do |config|
 
   config.model Invoice do
     navigation_icon 'fas fa-file-invoice-dollar'
+
+    create do
+      field  :pay_date
+      field  :user
+      field  :service_quantity
+    end
   end
 
   config.model Service do
