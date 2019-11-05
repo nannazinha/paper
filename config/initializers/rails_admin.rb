@@ -7,6 +7,26 @@ RailsAdmin.config do |config|
   # config.navigation_static_links = {'nome do site' => 'http://enddosite'}
   # config.navigation_static_label = 'links uteis'
 
+  config.model Unit do
+    navigation_icon 'fas fa-hotel'
+  end
+
+  config.model User do
+    navigation_icon 'fas fa-users'
+  end
+
+  config.model Contract do
+    navigation_icon 'fas fa-file-contract'
+  end
+
+  config.model Invoice do
+    navigation_icon 'fas fa-file-invoice-dollar'
+  end
+
+  config.model Service do
+    navigation_icon 'fas fa-concierge-bell'
+  end
+
   ### Popular gems integration
 
   # == Devise ==
