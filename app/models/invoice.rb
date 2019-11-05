@@ -1,8 +1,16 @@
 class Invoice < ApplicationRecord
   belongs_to :user
   belongs_to :service
+  has_many :service_quantity
 
+  before_save :calculate_total
   after_save :generate_invoice
+
+  def calculate_total
+    total = 0
+    self.service_quantity.each {|s| total += s.service.price * s.quantity}
+    self.update(total: total)
+  end
 
   def generate_invoice
     url = URI("https://app.papero.com.br/api/v1/invoices")
