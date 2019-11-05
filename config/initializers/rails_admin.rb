@@ -1,5 +1,12 @@
 RailsAdmin.config do |config|
 
+  #Title in Dashboard
+  config.main_app_name = ['Papero', '']
+
+  # #Sidebar links
+  # config.navigation_static_links = {'nome do site' => 'http://enddosite'}
+  # config.navigation_static_label = 'links uteis'
+
   ### Popular gems integration
 
   # == Devise ==
@@ -38,4 +45,6 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+
 end
