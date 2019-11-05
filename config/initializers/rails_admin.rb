@@ -17,6 +17,7 @@ RailsAdmin.config do |config|
 
   config.model Contract do
     navigation_icon 'fas fa-file-contract'
+    parent User
   end
 
   config.model Invoice do
