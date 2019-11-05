@@ -4,13 +4,76 @@ pt-BR:
       x_days:
         one: "1 dias"
         other: "%{count} dias"
+  date:
+    month_names:
+      -
+      - janeiro
+      - fevereiro
+      - março
+      - abril
+      - maio
+      - junho
+      - julho
+      - agosto
+      - setembro
+      - outubro
+      - novembro
+      - dezembro
+    abbr_month_names:
+      -
+      - jan
+      - fev
+      - mar
+      - abr
+      - mai
+      - jun
+      - jul
+      - ago
+      - set
+      - out
+      - nov
+      - dez
+    formats:
+      default: "%d/%m/%Y"
+      long: "%d de %B de %Y"
+      short: "%d de %B"
   activerecord:
     models:
-      client:
+      user:
         one: Cliente
         other: Clientes
+      unit:
+        one: Unidade
+        other: Unidades
+      room:
+        one: Quarto
+        other: Quartos
+      contract:
+        one: Contrato
+        other: Contratos
+      service:
+        one: Serviço
+        other: Serviços
     attributes:
-      client:
+      user:
+        name: "Nome"
+        cpf: "CPF"
+        gender: 'Genero'
+        sponsor: 'Responsável'
+        sponsor_cpf: 'CPF do Responsável'
+        birth_date: 'Data de nascimento'
+        responsible: 'Responsável pelo pagamento'
+        active: 'Ativo'
+      unit:
+        name: "Nome"
+        manager: 'Gerente'
+        address: 'Endereço'
+        account_nbr: 'Número da Conta'
+        qty_rooms: Número de quartos
+      room:
+        name: "Nome"
+        company_name: "Nome da Empresa"
+      contract:
         name: "Nome"
         company_name: "Nome da Empresa"
   views:
@@ -60,7 +123,7 @@ pt-BR:
         menu: "Dashboard"
         breadcrumb: "Dashboard"
       index:
-        title: "Lista de %{model_label_plural}"
+        title: "%{model_label_plural}"
         menu: "Lista"
         breadcrumb: "%{model_label_plural}"
       show:
@@ -118,7 +181,7 @@ pt-BR:
       save: "Gravar"
       save_and_add_another: "Gravar e criar outro"
       save_and_edit: "Gravar e editar"
-      all_of_the_following_related_items_will_be_deleted: "? Os seguintes itens serão apagados ou deixados orfãos:"
+      all_of_the_following_related_items_will_be_deleted: "? Os seguintes item serão apagados ou deixados orfãos:"
       are_you_sure_you_want_to_delete_the_object: "Tem a certeza que quer apagar este %{model_name}"
       confirmation: "Sim, tenho a certeza"
       delete_confirmation: "Confirmar apagar"
@@ -142,3 +205,4 @@ pt-BR:
         default_col_sep: ","
         col_sep: "Separador de colunas"
         col_sep_help: "Deixar em branco para usar omissão ('%{value}')" # value is default_col_sep
+
