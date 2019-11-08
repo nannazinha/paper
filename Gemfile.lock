@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:nannazinha/rollincode_custom.git
+  remote: https://github.com/nannazinha/rollincode_custom.git
   revision: 74189bb8a605596463e9bb30e09b1c438d1477b6
   specs:
     rails_admin_rollincode (1.3)
