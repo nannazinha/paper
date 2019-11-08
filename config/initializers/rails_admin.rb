@@ -17,6 +17,7 @@ RailsAdmin.config do |config|
     create do
       field  :name
       field  :email
+      field  :phone_prefix
       field  :phone_number
       field  :gender
       field  :birth_date
@@ -26,23 +27,30 @@ RailsAdmin.config do |config|
       field  :complement
       field  :district
       field  :city
-      field  :state 
+      field  :state
       field  :zip_code
+      field  :responsible
       field  :sponsor
       field  :sponsor_cpf
-
-      # field  :product_quantities
-      # field  :email
-      # field  :name
-      # field  :cpf
-      # field  :birth_date
-      # field  :product_quantities
 
       # field :admin_id, :hidden do
       #   default_value do
       #     bindings[:view]._current_admin
       #   end
       # end
+      field :password, :hidden do
+        default_value "123456"
+      end
+      # field :password_confirmation do
+      #   default_value "123456"
+      # end
+
+      field :admin_id, :hidden do
+        visible true
+        default_value do
+          bindings[:view].current_admin.id
+        end
+      end
     end
   end
 

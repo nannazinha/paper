@@ -19,7 +19,7 @@ class Invoice < ApplicationRecord
 
     request = Net::HTTP::Post.new(url)
     request["Content-Type"] = "application/json"
-    request["Authorization"] = "Token token=#{ENV['IUGU_API_SECRET']}"
+    request["Authorization"] = "Token token=#{ENV['IUGUSANDBOX_API_SECRET']}"
     request.body = "{\n    \"price\": #{self.total},
                      \n    \"notification_url\": \"https://notificationendpoint.com/notify\",
                      \n    \"payer_name\": \"#{self.user.fullname}\",
