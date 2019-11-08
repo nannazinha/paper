@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_05_151248) do
+ActiveRecord::Schema.define(version: 2019_11_05_201118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,10 +61,8 @@ ActiveRecord::Schema.define(version: 2019_11_05_151248) do
     t.string "status"
     t.integer "slip_days"
     t.bigint "user_id"
-    t.bigint "service_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["service_id"], name: "index_invoices_on_service_id"
     t.index ["user_id"], name: "index_invoices_on_user_id"
   end
 
@@ -91,9 +89,9 @@ ActiveRecord::Schema.define(version: 2019_11_05_151248) do
 
   create_table "services", force: :cascade do |t|
     t.string "name"
-    t.string "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "price"
   end
 
   create_table "units", force: :cascade do |t|
@@ -148,7 +146,6 @@ ActiveRecord::Schema.define(version: 2019_11_05_151248) do
   add_foreign_key "contracts", "rooms"
   add_foreign_key "contracts", "units"
   add_foreign_key "contracts", "users"
-  add_foreign_key "invoices", "services"
   add_foreign_key "invoices", "users"
   add_foreign_key "rooms", "units"
   add_foreign_key "service_quantities", "services"
