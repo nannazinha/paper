@@ -2,14 +2,14 @@ class Invoice < ApplicationRecord
   belongs_to :user
   has_many :service_quantity
 
-  # after_create :calculate_total
+  before_save :calculate_total
   after_save :generate_invoice
 
-  # def calculate_total
-  #   total = 0
-  #   self.service_quantity.each {|s| total += s.service.price * s.quantity}
-  #   self.update(total: total)
-  # end
+  def calculate_total
+    total_int = 0
+    self.service_quantity.each {|s| total_int += Service.find(s.service_id).price * s.quantity}
+    self.total = total_int.to_s
+  end
 
   def generate_invoice
     url = URI("https://app.papero.com.br/api/v1/invoices")
@@ -22,7 +22,7 @@ class Invoice < ApplicationRecord
     request["Authorization"] = "Token token=#{ENV['IUGUSANDBOX_API_SECRET']}"
     request.body = "{\n    \"price\": #{self.total},
                      \n    \"notification_url\": \"https://notificationendpoint.com/notify\",
-                     \n    \"payer_name\": \"#{self.user.fullname}\",
+                     \n    \"payer_name\": \"#{self.user.name}\",
                      \n    \"payer_email\": \"#{self.user.email}\",
                      \n    \"payer_cpf_cnpj\": \"#{self.user.cpf}\",
                      \n    \"payer_address_zip_code\": \"#{self.user.zip_code}\",
@@ -44,7 +44,7 @@ class Invoice < ApplicationRecord
     # link = invoice_response["url"]
 
     # mail = UserMailer.with(link).create_manual_invoice
-    #   mail.deliver_now
-    #   redirect_to new_fatura_path
+    #  mail.deliver_now
+    #  redirect_to new_fatura_path
    end
 end

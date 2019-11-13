@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_05_201118) do
+ActiveRecord::Schema.define(version: 2019_11_12_224707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,8 @@ ActiveRecord::Schema.define(version: 2019_11_05_201118) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "service_quantity_id"
+    t.index ["service_quantity_id"], name: "index_invoices_on_service_quantity_id"
     t.index ["user_id"], name: "index_invoices_on_user_id"
   end
 
@@ -80,11 +82,11 @@ ActiveRecord::Schema.define(version: 2019_11_05_201118) do
   create_table "service_quantities", force: :cascade do |t|
     t.integer "quantity"
     t.bigint "service_id"
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "invoice_id"
+    t.index ["invoice_id"], name: "index_service_quantities_on_invoice_id"
     t.index ["service_id"], name: "index_service_quantities_on_service_id"
-    t.index ["user_id"], name: "index_service_quantities_on_user_id"
   end
 
   create_table "services", force: :cascade do |t|
@@ -146,10 +148,11 @@ ActiveRecord::Schema.define(version: 2019_11_05_201118) do
   add_foreign_key "contracts", "rooms"
   add_foreign_key "contracts", "units"
   add_foreign_key "contracts", "users"
+  add_foreign_key "invoices", "service_quantities"
   add_foreign_key "invoices", "users"
   add_foreign_key "rooms", "units"
+  add_foreign_key "service_quantities", "invoices"
   add_foreign_key "service_quantities", "services"
-  add_foreign_key "service_quantities", "users"
   add_foreign_key "units", "admins"
   add_foreign_key "units", "companies"
   add_foreign_key "users", "admins"
