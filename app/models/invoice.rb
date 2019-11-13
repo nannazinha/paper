@@ -8,7 +8,7 @@ class Invoice < ApplicationRecord
   def calculate_total
     total_int = 0
     self.service_quantity.each {|s| total_int += Service.find(s.service_id).price * s.quantity}
-    self.total = total_int.to_s
+    self.total = total_int
   end
 
   def generate_invoice
@@ -41,10 +41,10 @@ class Invoice < ApplicationRecord
     filepath = response.read_body
 
     invoice_response = JSON.parse(filepath)
-    # link = invoice_response["url"]
-
+    link = invoice_response["url"]
+raise
     # mail = UserMailer.with(link).create_manual_invoice
     #  mail.deliver_now
-    #  redirect_to new_fatura_path
+    # redirect_to new_fatura_path
    end
 end
