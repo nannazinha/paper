@@ -67,7 +67,25 @@ RailsAdmin.config do |config|
       field  :user
       field  :service_quantity
     end
+
+
   end
+
+  # config.model ServiceQuantity do
+  #   navigation_icon 'fas fa-users'
+
+  #   create do
+  #     field  :quantity
+  #     field  :service_id
+
+  #     field :invoice_id, :hidden do
+  #       visible true
+  #       default_value do
+  #         bindings[:view].invoice.id
+  #       end
+  #     end
+  #   end
+  # end
 
   config.model Service do
     navigation_icon 'fas fa-concierge-bell'

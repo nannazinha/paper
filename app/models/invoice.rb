@@ -3,12 +3,12 @@ class Invoice < ApplicationRecord
   has_many :service_quantity
 
   before_save :calculate_total
-  after_save :generate_invoice
+  before_save :generate_invoice
 
   def calculate_total
     total_int = 0
     self.service_quantity.each {|s| total_int += Service.find(s.service_id).price * s.quantity}
-    self.total = total_int.to_s
+    self.total = total_int * 100
   end
 
   def generate_invoice
@@ -19,8 +19,8 @@ class Invoice < ApplicationRecord
 
     request = Net::HTTP::Post.new(url)
     request["Content-Type"] = "application/json"
-    request["Authorization"] = "Token token=#{ENV['IUGUSANDBOX_API_SECRET']}"
-    request.body = "{\n    \"price\": #{self.total},
+    request["Authorization"] = "Token token=861a6486abcd4fbd9c1c9ef9964d58df"
+    request.body = "{\n    \"price\": #{total},
                      \n    \"notification_url\": \"https://notificationendpoint.com/notify\",
                      \n    \"payer_name\": \"#{self.user.name}\",
                      \n    \"payer_email\": \"#{self.user.email}\",
@@ -34,17 +34,17 @@ class Invoice < ApplicationRecord
                      \n    \"payer_address_state\": \"#{self.user.state}\",
                      \n    \"bank_slip_extra_days\": 1,
                      \n    \"items_description\": \"mensalidade\",
-                     \n    \"client_app_invoice_id\": \"#{self.id}\"\n
+                     \n    \"client_app_invoice_id\": \"#{id}\"\n
                    }"
+
     # request
     response = https.request(request)
     filepath = response.read_body
 
     invoice_response = JSON.parse(filepath)
-    # link = invoice_response["url"]
-
+    self.link = invoice_response["url"]
     # mail = UserMailer.with(link).create_manual_invoice
     #  mail.deliver_now
-    #  redirect_to new_fatura_path
+    # redirect_to new_fatura_path
    end
 end
