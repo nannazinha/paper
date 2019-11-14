@@ -54,7 +54,26 @@ pt-BR:
       service:
         one: Serviço
         other: Serviços
+      company:
+        one: Empresa
+        other: Empresas
+      invoice:
+        one: Fatura
+        other: Faturas
+      service_quantity:
+        one: Item
+        other: Itens
+      admin:
+        one: Administrador
+        other: Administradores
     attributes:
+      admin:
+        name: Nome
+        role: Tipo de conta
+        company_id: Empresa
+        created_at: Criado em
+        updated_at: Atualizado em
+        email: Email
       user:
         name: "Nome"
         cpf: "CPF"
@@ -76,6 +95,45 @@ pt-BR:
       contract:
         name: "Nome"
         company_name: "Nome da Empresa"
+        created_at: Criado em
+        updated_at: Atualizado em
+        number: Numero
+        start: início
+        finish: Término
+        user_id: Usuário
+        unit_id: Quarto
+      company:
+        name: Nome
+        owner: Proprietário
+        created_at: Criado em
+        updated_at: Atualizado em
+      invoice:
+        pay_date: "Data de pagamento"
+        items_description: "Descrição dos itens"
+        fees: "Taxas"
+        created_at: Criado em
+        updated_at: Atualizado em
+      service_quantity:
+        quantity: Quantidade
+        service_id: Serviço
+        created_at: Criado em
+        updated_at: Atualizado em
+        invoice_id: Fatura
+      room:
+          number: Número
+          shared: Compartilhado
+          rented: Alugado
+          price: Preço
+          unit_id: Unidade
+      # unit:
+      #   name: Nome
+      #   address: Endereço
+      #   manager: Administrador
+      #   cnpj: CNPJ
+      #   bank: Banco
+      #   agency: Agência
+      #   account_number: Número da conta
+      #   rooms_qty: Números de quartos
   views:
   admin:
     home:
